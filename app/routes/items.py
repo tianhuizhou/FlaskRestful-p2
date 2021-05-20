@@ -17,6 +17,7 @@ def show(item_name):
     return jsonify({'message': 'Item not found'}), 404
 
 @module.route('',methods=['POST'])
+@jwt_required()
 def create():
     request_data = request.get_json()
     try:
@@ -33,6 +34,7 @@ def create():
         return {"message": "An error occurred inserting the item."}, 500
 
 @module.route('/<item_id>',methods=['DELETE'])
+@jwt_required()
 def delete(item_id):
     item = Item.find_by_id(item_id)
     if item:
@@ -41,6 +43,7 @@ def delete(item_id):
     return jsonify({'message': 'Item not found.'}), 404
 
 @module.route('<item_name>',methods=['PUT'])
+@jwt_required()
 def update(item_name):
     request_data = request.get_json()
     item = Item.find_by_name(item_name)
