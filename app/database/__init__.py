@@ -4,7 +4,8 @@ from werkzeug.security import safe_str_cmp
 
 def register_database(app: Flask):
     db_url="postgresql://tianhuizhou:@localhost:5432/tianhuizhou"
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+    db_url_cloud="postgresql://gxtjxlmtmhanye:cd2f43ce166c2b23a89ef00b75fc3e37a3a2a782d28b0f0ace1ee8cff59fa945@ec2-184-73-198-174.compute-1.amazonaws.com:5432/db8lvcc3vsoa1t"
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url_cloud
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db = SQLAlchemy(app)
     return db
